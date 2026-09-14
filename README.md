@@ -147,6 +147,11 @@ source install/setup.bash
 ros2 launch smart_parking_barrier smart_parking.launch.py gui:=true rviz:=false
 ```
 
+The launch file uses the dedicated Gazebo transport partition
+`smart_parking_barrier_demo` by default, preventing unrelated Gazebo sessions
+from interfering with this simulation. Override it only when intentionally
+connecting tools to a different partition: `gz_partition:=your_partition`.
+
 ## Headless execution
 
 Headless launch is supported. Rendering remains enabled because Gazebo GPU LiDAR requires a rendering backend.

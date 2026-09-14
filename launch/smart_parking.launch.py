@@ -5,7 +5,7 @@ import shlex
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
@@ -19,6 +19,7 @@ def generate_launch_description() -> LaunchDescription:
     bridge = os.path.join(share, 'config', 'bridge.yaml')
     gz_launch = os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
     gui = LaunchConfiguration('gui')
+    gz_partition = LaunchConfiguration('gz_partition')
 
     gz_world_arg = shlex.quote(world)
     gui_sim = IncludeLaunchDescription(
@@ -36,6 +37,11 @@ def generate_launch_description() -> LaunchDescription:
         DeclareLaunchArgument('gui', default_value='true', description='Launch Gazebo GUI.'),
         DeclareLaunchArgument('rviz', default_value='false', description='Reserved for an optional RViz view.'),
         DeclareLaunchArgument('use_sim_time', default_value='true'),
+        DeclareLaunchArgument(
+            'gz_partition', default_value='smart_parking_barrier_demo',
+            description='Gazebo transport partition for this isolated simulation.',
+        ),
+        SetEnvironmentVariable('GZ_PARTITION', gz_partition),
         gui_sim,
         headless_sim,
         Node(package='ros_gz_bridge', executable='parameter_bridge', name='parking_bridge',
