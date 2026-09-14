@@ -1,0 +1,20 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    # Each lidar is a narrow, directional detection gate.  Keep the opening
+    # trigger close to the boom while preserving enough travel distance for the
+    # 0.9 s arm motion at the configured vehicle speed.
+    approach_threshold: 0.8
+    passage_threshold: 0.8
+    sensor_timeout: 1.0
+    open_angle: 1.57
+    closed_angle: 0.0
+    opening_timeout: 5.0
+    closing_timeout: 5.0
+    debounce_duration: 0.15
+    clearance_delay: 1.0
+    barrier_motion_duration: 0.9
+    vehicle_speed: 1.2
+    start_delay: 0.0
+    # Leave ample time for the vehicle to pass the downstream lidar zone.
+    drive_duration: 100.0

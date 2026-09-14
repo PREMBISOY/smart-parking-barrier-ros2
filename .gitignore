@@ -1,0 +1,31 @@
+# ROS 2 / colcon build products
+build/
+install/
+log/
+.colcon/
+
+# Python test and bytecode artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Gazebo runtime and generated files
+.gazebo/
+*.log
+*.tmp
+*.bak
+*.orig
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Local environment and archives
+.env
+*.zip
